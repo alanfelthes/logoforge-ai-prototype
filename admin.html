@@ -1,0 +1,52 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Compliance Center — LogoForge AI</title><link rel="stylesheet" href="styles.css"></head><body><div class="app-shell">
+
+<aside class="sidebar" id="sidebar">
+  <div class="side-brand"><a class="brand" href="index.html"><span class="brand-mark">L</span><span><b>LogoForge AI</b><small style="color:#9da8bb">Business platform</small></span></a></div>
+  <div class="nav-title">Workspace</div>
+  <a class="side-link" href="app.html">✦ Create logo</a>
+  <a class="side-link" href="my-logos.html">▧ My logos</a>
+  <a class="side-link" href="wallet.html">◈ Service credits</a>
+  <a class="side-link" href="billing-history.html">▤ Billing history</a>
+  <div class="nav-title">Financial reports</div>
+  <a class="side-link" href="company-receivables-report.html">▥ Company receivables</a>
+  <a class="side-link" href="site-wallet-report.html">◇ Site wallet report</a>
+  <div class="nav-title">Platform administration</div>
+  <a class="side-link" href="admin.html">◎ Compliance center</a>
+  <a class="side-link" href="business-websites.html">⇄ Business websites</a>
+  <a class="side-link" href="api-webhooks.html">&lt;/&gt; API & webhooks</a>
+  <a class="side-link" href="site-payment-demo.html">◉ Multi-site demo</a>
+  <div class="side-card"><small>Service credit balance</small><b data-balance>$42.80</b><a class="btn" href="wallet.html">Add credits</a></div>
+</aside>
+
+<main class="app-main">
+<header class="app-top"><div style="display:flex;align-items:center;gap:12px"><button class="btn btn-light mobile-menu" onclick="toggleSidebar()">☰</button><span class="crumb">LogoForge AI / <b>Customer workspace</b></span></div><div class="profile"><span class="avatar">AF</span><span><b>Alan Felthes</b><small>Administrator</small></span></div></header>
+<div class="app-content" onload="loadLegalForm()">
+<div class="page-title"><div><h1>Payments & Compliance Center</h1><p>Configure public merchant details and review launch blockers before enabling Stripe live mode.</p></div><span class="status warn">Test mode only</span></div>
+<div class="legal-warning"><b>This prototype is not automatically “Stripe approved” or legally compliant.</b> Stripe reviews the real entity, website, products, policies, ownership, bank account and risk profile. A qualified lawyer and tax adviser must adapt the templates to the business and customer jurisdictions.</div>
+<div class="grid-even" style="margin-top:18px"><section class="card"><div class="card-head"><h2>Public business information</h2><button class="btn btn-primary" onclick="saveLegalConfig()">Save configuration</button></div><div class="card-body"><div class="fields">
+<div class="field"><label>Brand name</label><input id="cfg_brandName"></div><div class="field"><label>Legal entity name <span class="req">*</span></label><input id="cfg_legalName"></div>
+<div class="field"><label>Company registration number <span class="req">*</span></label><input id="cfg_registrationNumber"></div><div class="field"><label>Tax / VAT ID</label><input id="cfg_taxId"></div>
+<div class="field full"><label>Registered business address <span class="req">*</span></label><input id="cfg_registeredAddress"></div>
+<div class="field"><label>Country of incorporation <span class="req">*</span></label><input id="cfg_country"></div><div class="field"><label>Statement descriptor</label><input id="cfg_statementDescriptor" maxlength="22"></div>
+<div class="field"><label>Support email <span class="req">*</span></label><input id="cfg_supportEmail" type="email"></div><div class="field"><label>Support phone</label><input id="cfg_supportPhone"></div>
+<div class="field full"><label>Public website URL</label><input id="cfg_website"></div><div class="field full"><label>Data controller</label><input id="cfg_dataController"></div>
+<div class="field full"><label>Governing law and venue</label><input id="cfg_governingLaw"></div><div class="field full"><label>Privacy authority / regulator</label><input id="cfg_privacyAuthority"></div>
+<input type="hidden" id="cfg_lastUpdated" value="July 6, 2026">
+</div></div></section>
+<section class="card"><div class="card-head"><h2>Launch checklist</h2><b id="complianceScore">0/9</b></div><div class="card-body" id="complianceList"></div></section></div>
+<section style="margin-top:18px"><div class="card-head" style="padding-left:0;padding-right:0;border:0"><div><h2>Financial report prototypes</h2><p class="hint">Management views for cash receipts and the LogoForge Service Credit wallet.</p></div></div><div class="grid-even">
+<div class="card card-body"><span class="eyebrow">Company cash</span><h3>Company Receivables</h3><p class="hint">Consolidated gross payments, refunds, fees, tax, payouts and net receipts by business website.</p><a class="btn btn-primary" href="company-receivables-report.html">Open receivables report</a></div>
+<div class="card card-body"><span class="eyebrow">LogoForge wallet</span><h3>Service Credit Wallet</h3><p class="hint">Outstanding balances, purchases, consumption, reservations, reversals, aging and customer ledger.</p><a class="btn btn-primary" href="site-wallet-report.html">Open wallet report</a></div>
+</div></section><section class="card" id="sites" style="margin-top:18px"><div class="card-head"><h2>Registered business websites</h2><a class="btn btn-primary" href="business-websites.html">Manage websites</a></div><div class="card-body">
+<div class="notice success"><b>Unified merchant structure:</b> all websites below are owned and operated by the same legal entity, use the same Stripe account and settle funds to the same business bank account. Site IDs exist only for integration, permissions and reporting.</div>
+<div class="grid-3" style="margin-top:15px">
+<div class="card site-card"><div class="site-top"><div style="display:flex;gap:11px"><span class="site-icon">LF</span><div><b>LogoForge AI</b><br><span class="status ok">Active website</span></div></div><a class="btn btn-light" href="business-websites.html">Manage</a></div><div class="site-meta"><div><small>Merchant of record</small><b data-legal="legalName"></b></div><div><small>Payment purpose</small><b>Service credits</b></div><div><small>Stripe account</small><b>Central business account</b></div><div><small>Site ID</small><b>site_logoforge</b></div></div></div>
+<div class="card site-card"><div class="site-top"><div style="display:flex;gap:11px"><span class="site-icon">TS</span><div><b>TravelSmart</b><br><span class="status ok">Active website</span></div></div><a class="btn btn-light" href="business-websites.html">Manage</a></div><div class="site-meta"><div><small>Merchant of record</small><b data-legal="legalName"></b></div><div><small>Payment purpose</small><b>Travel services</b></div><div><small>Stripe account</small><b>Central business account</b></div><div><small>Site ID</small><b>site_travelsmart</b></div></div></div>
+<div class="card site-card"><div class="site-top"><div style="display:flex;gap:11px"><span class="site-icon">GC</span><div><b>Gold Custody SaaS</b><br><span class="status warn">Configuration due</span></div></div><a class="btn btn-light" href="website-settings.html?site=gold">Configure site</a></div><div class="site-meta"><div><small>Merchant of record</small><b data-legal="legalName"></b></div><div><small>Allowed origin</small><b>Not configured</b></div><div><small>Webhook URL</small><b>Not configured</b></div><div><small>Site ID</small><b>site_goldcustody</b></div></div></div>
+</div></div></section>
+<section class="card" style="margin-top:18px"><div class="card-head"><h2>Multi-site payment ledger — separate from service credits</h2><button class="btn btn-light">Export report</button></div><div style="overflow:auto"><table><thead><tr><th>Date</th><th>Business website</th><th>Source customer</th><th>Source order</th><th>Amount</th><th>Merchant of record</th><th>Status</th><th>Site webhook</th></tr></thead><tbody>
+<tr><td>Jul 6, 2026</td><td>TravelSmart / site_travelsmart</td><td>usr_88421</td><td>booking_75018</td><td>$240.00</td><td data-legal="legalName"></td><td><span class="status ok">Paid</span></td><td><span class="status ok">Delivered</span></td></tr>
+<tr><td>Jul 6, 2026</td><td>Gold Custody SaaS / site_goldcustody</td><td>customer_192</td><td>invoice_8831</td><td>$89.00</td><td data-legal="legalName"></td><td><span class="status ok">Paid</span></td><td><span class="status ok">Delivered</span></td></tr>
+<tr><td>Jul 6, 2026</td><td>TravelSmart / site_travelsmart</td><td>usr_28017</td><td>booking_74982</td><td>$510.00</td><td data-legal="legalName"></td><td><span class="status bad">Failed</span></td><td><span class="status ok">Delivered</span></td></tr>
+</tbody></table></div></section>
+</div></main></div><div class="toast" id="toast"></div><script src="config.js"></script><script src="app.js"></script><script>document.addEventListener("DOMContentLoaded",loadLegalForm);</script></body></html>

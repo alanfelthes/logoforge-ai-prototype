@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Account Settings — LogoForge AI</title><link rel="stylesheet" href="styles.css"></head><body><div class="app-shell">
+
+<aside class="sidebar" id="sidebar">
+  <div class="side-brand"><a class="brand" href="index.html"><span class="brand-mark">L</span><span><b>LogoForge AI</b><small style="color:#9da8bb">Business platform</small></span></a></div>
+  <div class="nav-title">Workspace</div>
+  <a class="side-link" href="app.html">✦ Create logo</a>
+  <a class="side-link" href="my-logos.html">▧ My logos</a>
+  <a class="side-link" href="wallet.html">◈ Service credits</a>
+  <a class="side-link" href="billing-history.html">▤ Billing history</a>
+  <div class="nav-title">Financial reports</div>
+  <a class="side-link" href="company-receivables-report.html">▥ Company receivables</a>
+  <a class="side-link" href="site-wallet-report.html">◇ Site wallet report</a>
+  <div class="nav-title">Platform administration</div>
+  <a class="side-link" href="admin.html">◎ Compliance center</a>
+  <a class="side-link" href="business-websites.html">⇄ Business websites</a>
+  <a class="side-link" href="api-webhooks.html">&lt;/&gt; API & webhooks</a>
+  <a class="side-link" href="site-payment-demo.html">◉ Multi-site demo</a>
+  <div class="side-card"><small>Service credit balance</small><b data-balance>$42.80</b><a class="btn" href="wallet.html">Add credits</a></div>
+</aside>
+
+<main class="app-main">
+<header class="app-top">
+  <div style="display:flex;align-items:center;gap:12px">
+    <button class="btn btn-light mobile-menu" onclick="toggleSidebar()">☰</button>
+    <span class="crumb">LogoForge AI / <b id="pageCrumb">Prototype</b></span>
+  </div>
+  <div class="profile"><span class="avatar">AF</span><span><b>Alan Felthes</b><small>Administrator</small></span></div>
+</header>
+<div class="app-content">
+<div class="page-title"><div><span class="eyebrow">Workspace settings</span><h1 style="margin-top:10px">Account Settings</h1><p>Profile, team access, notification preferences and security controls.</p></div><button class="btn btn-primary" onclick="toast('Settings saved.')">Save settings</button></div>
+<div class="grid-even"><section class="card"><div class="card-head"><h2>Profile</h2></div><div class="card-body"><div class="fields"><div class="field"><label>Name</label><input value="Alan Felthes"></div><div class="field"><label>Email</label><input value="alan@example.com"></div><div class="field"><label>Role</label><input value="Administrator" readonly></div><div class="field"><label>Timezone</label><input value="Asia/Bangkok"></div></div></div></section><section class="card"><div class="card-head"><h2>Security</h2></div><div class="card-body"><div class="compliance-item"><span class="check-dot ok">✓</span><div><b>Password active</b><p>Last changed 22 days ago.</p></div></div><div class="compliance-item"><span class="check-dot bad">!</span><div><b>MFA not enabled</b><p>Enable MFA before live payment access.</p></div></div><button class="btn btn-primary" style="margin-top:12px">Enable MFA</button></div></section></div>
+</div></main></div><div class="toast" id="toast"></div><script src="config.js"></script><script src="app.js"></script><script>document.getElementById('pageCrumb').textContent='Account Settings';</script></body></html>

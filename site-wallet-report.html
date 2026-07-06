@@ -1,0 +1,116 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Site Wallet Report — LogoForge AI</title><link rel="stylesheet" href="styles.css"></head>
+<body><div class="app-shell">
+
+<aside class="sidebar" id="sidebar">
+  <div class="side-brand"><a class="brand" href="index.html"><span class="brand-mark">L</span><span><b>LogoForge AI</b><small style="color:#9da8bb">Business platform</small></span></a></div>
+  <div class="nav-title">Workspace</div>
+  <a class="side-link" href="app.html">✦ Create logo</a>
+  <a class="side-link" href="my-logos.html">▧ My logos</a>
+  <a class="side-link" href="wallet.html">◈ Service credits</a>
+  <a class="side-link" href="billing-history.html">▤ Billing history</a>
+  <div class="nav-title">Financial reports</div>
+  <a class="side-link" href="company-receivables-report.html">▥ Company receivables</a>
+  <a class="side-link" href="site-wallet-report.html">◇ Site wallet report</a>
+  <div class="nav-title">Platform administration</div>
+  <a class="side-link" href="admin.html">◎ Compliance center</a>
+  <a class="side-link" href="business-websites.html">⇄ Business websites</a>
+  <a class="side-link" href="api-webhooks.html">&lt;/&gt; API & webhooks</a>
+  <a class="side-link" href="site-payment-demo.html">◉ Multi-site demo</a>
+  <div class="side-card"><small>Service credit balance</small><b data-balance>$42.80</b><a class="btn" href="wallet.html">Add credits</a></div>
+</aside>
+
+<main class="app-main">
+<header class="app-top">
+  <div style="display:flex;align-items:center;gap:12px">
+    <button class="btn btn-light mobile-menu" onclick="toggleSidebar()">☰</button>
+    <span class="crumb">LogoForge AI / <b id="pageCrumb">Financial report</b></span>
+  </div>
+  <div class="profile"><span class="avatar">AF</span><span><b>Alan Felthes</b><small>Administrator</small></span></div>
+</header>
+<div class="app-content">
+<div class="page-title"><div><span class="eyebrow">LogoForge own-site wallet</span><h1 style="margin-top:10px">Service Credit Wallet Report</h1><p>Financial and operational reporting for prepaid credits used only inside the LogoForge website.</p></div><div class="table-actions"><button class="btn btn-outline" onclick="toast('Wallet ledger CSV prepared.')">Export Ledger</button><button class="btn btn-primary" onclick="toast('Wallet liability PDF prepared.')">Export PDF</button></div></div>
+
+<section class="card" style="margin-bottom:18px"><div class="card-body"><div class="report-filters">
+<div class="field wide"><label>Wallet program</label><select><option>LogoForge Service Credits</option></select></div>
+<div class="field"><label>Reporting period</label><select id="walletPeriod" onchange="changeWalletPeriod()"><option value="jul">Jul 1–6, 2026</option><option value="jun">June 2026</option><option value="q2">Q2 2026</option><option value="ytd">Year to date</option></select></div>
+<div class="field"><label>Customer segment</label><select><option>All customers</option><option>Individual</option><option>Business</option><option>High balance</option></select></div>
+<div class="field"><label>Transaction type</label><select id="walletTypeFilter" onchange="filterWalletRows()"><option value="all">All transactions</option><option value="purchase">Credit purchases</option><option value="usage">Generation usage</option><option value="reservation">Reservations</option><option value="refund">Refunds / reversals</option></select></div>
+<div style="margin-left:auto"><button class="btn btn-light" onclick="toast('Wallet report refreshed.')">↻ Refresh</button></div>
+</div></div></section>
+
+<section class="wallet-hero"><div><small>Outstanding customer Service Credit balance</small><h2 id="outstandingBalance">$18,742.80</h2><p style="color:#d2cee4;margin:0;line-height:1.55">Credits purchased but not yet consumed. This is an operational service obligation, not the company bank balance.</p></div><div class="wallet-breakdown"><div><small>Available</small><b>$17,934.25</b></div><div><small>Reserved</small><b>$808.55</b></div><div><small>Active wallets</small><b>1,146</b></div></div></section>
+
+<div class="metric-row">
+<div class="card metric liability-card"><small>Credits purchased</small><b id="purchasedMetric">$14,880.00</b><span class="delta up">514 top-ups this period</span></div>
+<div class="card metric recognized-card"><small>Credits consumed</small><b id="consumedMetric">$9,624.40</b><span class="delta neutral">1,846 generations</span></div>
+<div class="card metric reserve-card"><small>Open reservations</small><b id="reservedMetric">$808.55</b><span class="delta neutral">127 generations processing</span></div>
+<div class="card metric"><small>Automatic reversals</small><b>$364.20</b><span class="delta neutral">Failed / canceled requests</span></div>
+<div class="card metric"><small>Cash refunds</small><b>$294.00</b><span class="delta down">Unused credit refunds</span></div>
+<div class="card metric"><small>Average wallet balance</small><b>$16.36</b><span class="delta up">↑ $1.82 vs prior period</span></div>
+</div>
+
+<div class="callout-accounting" style="margin-bottom:18px"><span class="symbol">!</span><div><b>Revenue-recognition distinction</b><p class="hint" style="margin:4px 0 0">A Stripe top-up creates cash and increases the Service Credit obligation. For management reporting, service revenue is recognized when credits are consumed by delivered logo-generation services, subject to the company accountant and applicable accounting standards.</p></div></div>
+
+<div class="report-grid">
+<section class="card chart-box"><div class="chart-head"><div><h3>Credit purchases versus consumption</h3><p>Daily movement in the LogoForge Service Credit program.</p></div><div class="legend"><span><i style="background:#6d4aff"></i>Purchased</span><span><i style="background:#17a378"></i>Consumed</span></div></div>
+<svg class="svg-chart" viewBox="0 0 760 270"><line class="chart-grid-line" x1="55" y1="30" x2="735" y2="30"/><line class="chart-grid-line" x1="55" y1="82" x2="735" y2="82"/><line class="chart-grid-line" x1="55" y1="134" x2="735" y2="134"/><line class="chart-grid-line" x1="55" y1="186" x2="735" y2="186"/><line class="chart-grid-line" x1="55" y1="238" x2="735" y2="238"/>
+<text class="chart-label" x="8" y="34">$4k</text><text class="chart-label" x="8" y="86">$3k</text><text class="chart-label" x="8" y="138">$2k</text><text class="chart-label" x="8" y="190">$1k</text><text class="chart-label" x="30" y="242">$0</text><polyline class="chart-gross" points="55,174 165,132 275,157 385,98 495,145 605,61 715,117"/><polyline class="chart-net" points="55,190 165,166 275,174 385,142 495,158 605,121 715,136"/><text class="chart-label" x="45" y="260">Jul 1</text><text class="chart-label" x="155" y="260">Jul 2</text><text class="chart-label" x="265" y="260">Jul 3</text><text class="chart-label" x="375" y="260">Jul 4</text><text class="chart-label" x="485" y="260">Jul 5</text><text class="chart-label" x="595" y="260">Jul 6</text><text class="chart-label" x="705" y="260">Jul 7</text></svg></section>
+<aside class="card chart-box"><div class="chart-head"><div><h3>Current credit status</h3><p>Composition of credits issued to customers.</p></div></div><div class="donut-wrap"><div class="donut"><div class="donut-center"><div><b>$38.2k</b><small>Total issued</small></div></div></div><div class="bar-list" style="min-width:170px"><div class="bar-item-head"><span>Consumed</span><b>49%</b></div><div class="bar-item-head"><span>Available</span><b>29%</b></div><div class="bar-item-head"><span>Reserved</span><b>13%</b></div><div class="bar-item-head"><span>Refunded</span><b>9%</b></div></div></div></aside>
+</div>
+
+<div class="grid-even" style="margin-top:18px">
+<section class="card"><div class="card-head"><h2>Wallet liability reconciliation</h2><span class="status ok">Balanced</span></div><div class="card-body"><div class="reconcile">
+<span>Opening customer credit liability</span><b>$13,487.20</b><span>Credit purchases this period</span><b class="money-positive">+$14,880.00</b><span>Promotional credits issued</span><b class="money-positive">+$620.00</b><span>Credits consumed for delivered services</span><b class="money-negative">−$9,624.40</b><span>Unused credits refunded</span><b class="money-negative">−$294.00</b><span>Administrative adjustments</span><b class="money-negative">−$326.00</b><span class="total-label">Closing outstanding credit balance</span><b class="total-value">$18,742.80</b>
+</div></div></section>
+<section class="card"><div class="card-head"><h2>Balance aging</h2></div><div class="card-body"><div class="aging-grid"><div class="aging"><small>0–30 days</small><b>$9,441.10</b><span class="hint">50.4%</span></div><div class="aging"><small>31–90 days</small><b>$5,117.45</b><span class="hint">27.3%</span></div><div class="aging"><small>91–180 days</small><b>$2,604.25</b><span class="hint">13.9%</span></div><div class="aging"><small>180+ days</small><b>$1,580.00</b><span class="hint">8.4%</span></div></div><div class="notice" style="margin-top:15px"><b>Operational review:</b> monitor older unused balances, inactive accounts and jurisdiction-specific obligations before changing expiration or forfeiture rules.</div></div></section>
+</div>
+
+<section class="card" style="margin-top:18px"><div class="card-head"><div><h2>Top customer wallet balances</h2><p class="hint">Largest outstanding service obligations by customer account.</p></div><button class="btn btn-light" onclick="toast('Customer balance report exported.')">Export balances</button></div><div style="overflow:auto"><table>
+<thead><tr><th>Customer</th><th>Wallet ID</th><th>Available</th><th>Reserved</th><th>Total balance</th><th>Last activity</th><th>Risk / status</th></tr></thead><tbody>
+<tr><td><b>Acme Design Studio</b><br><span class="hint">billing@acme.example</span></td><td>wlt_01JZ82A</td><td>$1,720.00</td><td>$80.00</td><td><b>$1,800.00</b></td><td>Jul 6, 2026</td><td><span class="status ok">Active</span></td></tr>
+<tr><td><b>TravelSmart Creative</b><br><span class="hint">design@travelsmart.example</span></td><td>wlt_01JZ71B</td><td>$1,165.50</td><td>$34.50</td><td><b>$1,200.00</b></td><td>Jul 6, 2026</td><td><span class="status ok">Active</span></td></tr>
+<tr><td><b>Lotus Retail Group</b><br><span class="hint">marketing@lotus.example</span></td><td>wlt_01JX92C</td><td>$748.20</td><td>$51.80</td><td><b>$800.00</b></td><td>Jun 28, 2026</td><td><span class="status ok">Active</span></td></tr>
+<tr><td><b>Northbay Ventures</b><br><span class="hint">ops@northbay.example</span></td><td>wlt_01JW11M</td><td>$495.00</td><td>$5.00</td><td><b>$500.00</b></td><td>Mar 11, 2026</td><td><span class="status warn">Dormant 117d</span></td></tr>
+</tbody></table></div></section>
+
+<section class="card" id="walletLedger" style="margin-top:18px"><div class="card-head"><div><h2>Wallet transaction ledger</h2><p class="hint">Immutable movements affecting customer Service Credit balances.</p></div><div class="report-tabs"><button class="report-tab active" onclick="setWalletTab(this,'all')">All</button><button class="report-tab" onclick="setWalletTab(this,'purchase')">Purchases</button><button class="report-tab" onclick="setWalletTab(this,'usage')">Usage</button><button class="report-tab" onclick="setWalletTab(this,'refund')">Refunds</button></div></div><div style="overflow:auto"><table id="walletLedgerTable">
+<thead><tr><th>Created</th><th>Customer / wallet</th><th>Reference</th><th>Transaction</th><th>Opening balance</th><th>Change</th><th>Closing balance</th><th>Status</th></tr></thead><tbody>
+<tr data-type="purchase"><td>Jul 6, 20:42</td><td>Alan Felthes<br><span class="hint">wlt_10018</span></td><td>pi_3R79F20</td><td>Credit purchase</td><td>$42.80</td><td class="money-positive">+$25.00</td><td>$67.80</td><td><span class="status ok">Posted</span></td></tr>
+<tr data-type="reservation"><td>Jul 6, 20:48</td><td>Alan Felthes<br><span class="hint">wlt_10018</span></td><td>res_83A1</td><td>Generation reservation</td><td>$67.80</td><td class="money-negative">−$0.45</td><td>$67.35 available</td><td><span class="status info">Reserved</span></td></tr>
+<tr data-type="usage"><td>Jul 6, 20:50</td><td>Alan Felthes<br><span class="hint">wlt_10018</span></td><td>gen_83A1</td><td>Generation settlement</td><td>$67.80</td><td class="money-negative">−$0.42</td><td>$67.38</td><td><span class="status ok">Settled</span></td></tr>
+<tr data-type="refund"><td>Jul 6, 20:50</td><td>Alan Felthes<br><span class="hint">wlt_10018</span></td><td>rel_83A1</td><td>Unused reservation released</td><td>$67.35</td><td class="money-positive">+$0.03</td><td>$67.38</td><td><span class="status ok">Released</span></td></tr>
+<tr data-type="refund"><td>Jul 6, 17:12</td><td>Northbay Ventures<br><span class="hint">wlt_01JW11M</span></td><td>rev_7K22</td><td>Failed generation reversal</td><td>$499.58</td><td class="money-positive">+$0.42</td><td>$500.00</td><td><span class="status ok">Reversed</span></td></tr>
+<tr data-type="usage"><td>Jul 6, 16:31</td><td>Acme Design Studio<br><span class="hint">wlt_01JZ82A</span></td><td>gen_91BC</td><td>Premium generation</td><td>$1,801.25</td><td class="money-negative">−$1.25</td><td>$1,800.00</td><td><span class="status ok">Settled</span></td></tr>
+</tbody></table></div></section>
+
+<section class="grid-even" style="margin-top:18px">
+<div class="card"><div class="card-head"><h2>Generation economics</h2></div><div class="card-body"><div class="reconcile"><span>Provider API cost</span><b>$1,924.88</b><span>Customer credit consumption</span><b>$9,624.40</b><span>Configured multiplier</span><b>5.00×</b><span class="total-label">Gross contribution before overhead</span><b class="total-value">$7,699.52</b></div><p class="hint">Taxes, Stripe fees on original credit purchases, infrastructure, support, refunds and other operating expenses are not deducted in this contribution view.</p></div></div>
+<div class="card"><div class="card-head"><h2>Controls and exceptions</h2></div><div class="card-body"><div class="compliance-item"><span class="check-dot ok">✓</span><div><b>Ledger balances</b><p>Transaction totals reconcile to customer wallet balances.</p></div></div><div class="compliance-item"><span class="check-dot ok">✓</span><div><b>Reservations expire automatically</b><p>Stale generation reservations are released after the configured timeout.</p></div></div><div class="compliance-item"><span class="check-dot bad">!</span><div><b>17 dormant high-balance wallets</b><p>Review support outreach and applicable legal handling.</p></div></div></div></div>
+</section>
+</div></main></div><div class="toast" id="toast"></div>
+<script src="config.js"></script><script src="app.js"></script><script>
+document.getElementById('pageCrumb').textContent='Site Wallet Report';
+function filterWalletRows(typeOverride){
+  const type=typeOverride||document.getElementById('walletTypeFilter').value;
+  document.querySelectorAll('#walletLedgerTable tbody tr').forEach(row=>{
+    row.style.display=(type==='all'||row.dataset.type===type)?'':'none';
+  });
+}
+function setWalletTab(button,type){
+  document.querySelectorAll('.report-tab').forEach(item=>item.classList.remove('active'));
+  button.classList.add('active');
+  filterWalletRows(type);
+}
+function changeWalletPeriod(){
+  const period=document.getElementById('walletPeriod').value;
+  const values={
+    jul:['$18,742.80','$14,880.00','$9,624.40','$808.55'],
+    jun:['$13,487.20','$52,340.00','$47,911.80','$592.10'],
+    q2:['$13,487.20','$143,920.00','$138,104.60','$592.10'],
+    ytd:['$18,742.80','$276,480.00','$257,831.40','$808.55']
+  }[period];
+  ['outstandingBalance','purchasedMetric','consumedMetric','reservedMetric'].forEach((id,index)=>{
+    document.getElementById(id).textContent=values[index];
+  });
+}
+</script></body></html>

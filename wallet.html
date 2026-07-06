@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Service Credits — LogoForge AI</title><link rel="stylesheet" href="styles.css"></head><body><div class="app-shell">
+
+<aside class="sidebar" id="sidebar">
+  <div class="side-brand"><a class="brand" href="index.html"><span class="brand-mark">L</span><span><b>LogoForge AI</b><small style="color:#9da8bb">Business platform</small></span></a></div>
+  <div class="nav-title">Workspace</div>
+  <a class="side-link" href="app.html">✦ Create logo</a>
+  <a class="side-link" href="my-logos.html">▧ My logos</a>
+  <a class="side-link" href="wallet.html">◈ Service credits</a>
+  <a class="side-link" href="billing-history.html">▤ Billing history</a>
+  <div class="nav-title">Financial reports</div>
+  <a class="side-link" href="company-receivables-report.html">▥ Company receivables</a>
+  <a class="side-link" href="site-wallet-report.html">◇ Site wallet report</a>
+  <div class="nav-title">Platform administration</div>
+  <a class="side-link" href="admin.html">◎ Compliance center</a>
+  <a class="side-link" href="business-websites.html">⇄ Business websites</a>
+  <a class="side-link" href="api-webhooks.html">&lt;/&gt; API & webhooks</a>
+  <a class="side-link" href="site-payment-demo.html">◉ Multi-site demo</a>
+  <div class="side-card"><small>Service credit balance</small><b data-balance>$42.80</b><a class="btn" href="wallet.html">Add credits</a></div>
+</aside>
+
+<main class="app-main">
+<header class="app-top"><div style="display:flex;align-items:center;gap:12px"><button class="btn btn-light mobile-menu" onclick="toggleSidebar()">☰</button><span class="crumb">LogoForge AI / <b>Customer workspace</b></span></div><div class="profile"><span class="avatar">AF</span><span><b>Alan Felthes</b><small>Administrator</small></span></div></header>
+<div class="app-content">
+<div class="page-title"><div><h1>Service Credits</h1><p>Prepaid, closed-loop credits for purchasing LogoForge services.</p></div><div class="table-actions"><a href="site-wallet-report.html" class="btn btn-primary">Wallet report</a><a href="refund-policy.html" class="btn btn-outline">Refund policy</a></div></div>
+<div class="wallet-banner"><div><small>Available service credits</small><b data-balance>$42.80</b><small>No transfer, withdrawal or cash redemption. No expiration while the account remains active.</small></div><button class="btn" style="background:white;color:#443195" onclick="openTopup()">Add credits with Stripe</button></div>
+<div class="grid-even">
+<section class="card"><div class="card-head"><h2>Add service credits</h2><span class="status info">Stripe Checkout</span></div><div class="card-body"><div class="amount-grid"><button class="amount" data-amount="10"><b>$10</b><small>Starter</small></button><button class="amount selected" data-amount="25"><b>$25</b><small>Popular</small></button><button class="amount" data-amount="50"><b>$50</b><small>Creator</small></button><button class="amount" data-amount="100"><b>$100</b><small>Studio</small></button></div><div class="field" style="margin-top:14px"><label>Custom amount</label><input id="customAmount" type="number" min="5" placeholder="Minimum $5.00"></div><button class="btn btn-primary" style="width:100%;margin-top:15px" onclick="openTopup()">Continue to secure checkout</button><div class="notice" style="margin-top:14px"><b>Important:</b> this balance is a service-credit ledger, not a bank account or general-purpose stored-value wallet. Credits can only be used for LogoForge services.</div></div></section>
+<section class="card"><div class="card-head"><h2>Customer protection</h2></div><div class="card-body"><div class="compliance-item"><span class="check-dot ok">✓</span><div><b>Price shown before payment</b><p>Amount, currency, taxes and merchant identity are displayed before authorization.</p></div></div><div class="compliance-item"><span class="check-dot ok">✓</span><div><b>Terms acceptance recorded</b><p>Checkout records policy version, timestamp and customer confirmation.</p></div></div><div class="compliance-item"><span class="check-dot ok">✓</span><div><b>Webhook-confirmed fulfillment</b><p>Credits are added only after a verified server-side Stripe event.</p></div></div><div class="compliance-item"><span class="check-dot ok">✓</span><div><b>Receipt and payment reference</b><p>The customer receives a recognizable descriptor and searchable receipt.</p></div></div></div></section>
+</div>
+<section class="card" id="ledger" style="margin-top:19px"><div class="card-head"><h2>Recent Service Credit activity</h2><div class="table-actions"><a class="btn btn-light" href="billing-history.html">Open full billing history</a><button class="btn btn-light" onclick="toast('CSV exported.')">Export CSV</button></div></div><div style="overflow:auto"><table><thead><tr><th>Date</th><th>Reference</th><th>Type</th><th>Description</th><th>Provider cost</th><th>Multiplier</th><th>Balance change</th><th>Status</th></tr></thead><tbody><tr><td>Jul 6, 2026</td><td>gen_83A1</td><td>Generation</td><td>Northstar Labs · 4 concepts</td><td>$0.084</td><td>5×</td><td>−$0.42</td><td><span class="status ok">Settled</span></td></tr><tr><td>Jul 5, 2026</td><td>pi_9MF4</td><td>Credit purchase</td><td>Stripe Checkout</td><td>—</td><td>—</td><td>+$25.00</td><td><span class="status ok">Paid</span></td></tr><tr><td>Jul 4, 2026</td><td>rev_61K3</td><td>Automatic reversal</td><td>Failed generation reservation</td><td>—</td><td>—</td><td>+$0.42</td><td><span class="status ok">Reversed</span></td></tr></tbody></table></div></section>
+</div></main></div><div class="toast" id="toast"></div><script src="config.js"></script><script src="app.js"></script></body></html>

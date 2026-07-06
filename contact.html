@@ -1,0 +1,29 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contact & Company Details — LogoForge AI</title><link rel="stylesheet" href="styles.css"></head><body>
+<nav class="public-nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html"><span class="brand-mark">L</span><span><b>LogoForge AI</b><small>AI brand creation platform</small></span></a>
+    <div class="nav-links">
+      <a href="index.html#how">How it works</a><a href="index.html#pricing">Pricing</a><a href="contact.html">Contact</a>
+      <a class="btn btn-outline" href="login.html">Log in</a><a class="btn btn-primary" href="app.html">Open prototype</a>
+    </div>
+  </div>
+</nav>
+<section class="section"><div class="container"><div class="section-head"><h2>Contact and company details</h2><p>Customers must be able to identify and reach the real merchant before and after a payment.</p></div><div class="legal-warning">Replace all placeholder information before submitting the website for Stripe review or accepting live payments.</div><div class="contact-grid" style="margin-top:18px"><div class="card card-body"><h3>Merchant information</h3><p><b>Brand:</b> <span data-legal="brandName"></span><br><b>Legal entity:</b> <span data-legal="legalName"></span><br><b>Registration:</b> <span data-legal="registrationNumber"></span><br><b>Tax ID:</b> <span data-legal="taxId"></span><br><b>Registered address:</b> <span data-legal="registeredAddress"></span><br><b>Country:</b> <span data-legal="country"></span><br><b>Statement descriptor:</b> <span data-legal="statementDescriptor"></span></p><h3>Support</h3><p>Email: <a data-legal-href="supportEmail"><span data-legal="supportEmail"></span></a><br>Phone: <a data-legal-href="supportPhone"><span data-legal="supportPhone"></span></a></p><p class="hint">Publish actual support hours and typical response time.</p></div><div class="card card-body"><h3>Send a support request</h3><div class="fields"><div class="field"><label>Name</label><input></div><div class="field"><label>Email</label><input type="email"></div><div class="field"><label>Request type</label><select><option>Payment or receipt</option><option>Refund request</option><option>Logo generation issue</option><option>Privacy request</option><option>Complaint</option><option>Multi-site payment integration</option></select></div><div class="field"><label>Reference</label><input placeholder="Payment, order or generation ID"></div><div class="field full"><label>Message</label><textarea></textarea></div></div><button class="btn btn-primary" style="margin-top:15px" onclick="toast('Support request recorded in prototype mode.')">Submit request</button><h3 id="complaints" style="margin-top:27px">Complaints</h3><p class="hint">Provide the legal escalation path, external dispute-resolution body or regulator applicable to the company and customer jurisdiction.</p></div></div></div></section>
+<footer class="public-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html"><span class="brand-mark">L</span><span><b>LogoForge AI</b><small>AI brand creation platform</small></span></a>
+        <p><span data-legal="legalName"></span><br><span data-legal="registeredAddress"></span><br>
+        Registration: <span data-legal="registrationNumber"></span><br>Tax ID: <span data-legal="taxId"></span></p>
+      </div>
+      <div><h4>Product</h4><a href="index.html#how">How it works</a><a href="index.html#pricing">Pricing</a><a href="app.html">Logo generator</a><a href="site-payment-demo.html">Multi-site checkout demo</a></div>
+      <div><h4>Legal</h4><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a><a href="refund-policy.html">Refund & Cancellation Policy</a><a href="acceptable-use.html">Acceptable Use</a><a href="ai-output-policy.html">AI Output Policy</a><a href="cookie-policy.html">Cookie Policy</a></div>
+      <div><h4>Support</h4><a href="contact.html">Contact & company details</a><a data-legal-href="supportEmail"><span data-legal="supportEmail"></span></a><a data-legal-href="supportPhone"><span data-legal="supportPhone"></span></a><a href="contact.html#complaints">Complaints</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 <span data-legal="legalName"></span>. All rights reserved.</span><span>Card statement descriptor: <b data-legal="statementDescriptor"></b></span></div>
+  </div>
+</footer>
+<div class="cookie-banner" id="cookieBanner"><p><b>Cookie preferences.</b> This prototype uses essential browser storage for login simulation, payment results and legal configuration. Analytics and marketing cookies must remain disabled until consent is collected where required. <a href="cookie-policy.html">Cookie Policy</a></p><div style="display:flex;gap:8px"><button class="btn btn-light" onclick="setCookieChoice('essential')">Essential only</button><button class="btn btn-primary" onclick="setCookieChoice('all')">Accept all</button></div></div>
+<div class="toast" id="toast"></div>
+<script src="config.js"></script><script src="app.js"></script></body></html>

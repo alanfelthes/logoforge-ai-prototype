@@ -1,0 +1,86 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Northstar Labs Project — LogoForge AI</title><link rel="stylesheet" href="styles.css"></head><body>
+<div class="app-shell">
+<aside class="sidebar" id="sidebar">
+  <div class="side-brand">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">L</span>
+      <span><b>LogoForge AI</b><small style="color:#9da8bb">Business platform</small></span>
+    </a>
+  </div>
+  <div class="nav-title">Workspace</div>
+  <a class="side-link" href="app.html">✦ Create logo</a><a class="side-link active" href="my-logos.html">▧ My logos</a><a class="side-link" href="wallet.html">◈ Service credits</a><a class="side-link" href="billing-history.html">▤ Billing history</a>
+  <div class="nav-title">Financial reports</div>
+  <a class="side-link" href="company-receivables-report.html">▥ Company receivables</a><a class="side-link" href="site-wallet-report.html">◇ Site wallet report</a>
+  <div class="nav-title">Platform administration</div>
+  <a class="side-link" href="admin.html">◎ Compliance center</a><a class="side-link" href="business-websites.html">⇄ Business websites</a><a class="side-link" href="site-payment-demo.html">&lt;/&gt; Multi-site demo</a>
+  <div class="side-card">
+    <small>Service credit balance</small>
+    <b data-balance>$42.80</b>
+    <a class="btn" href="wallet.html">Add credits</a>
+  </div>
+</aside>
+<main class="app-main">
+<header class="app-top">
+  <div style="display:flex;align-items:center;gap:12px">
+    <button class="btn btn-light mobile-menu" onclick="toggleSidebar()">☰</button>
+    <span class="crumb">LogoForge AI / <b>My Logos / Northstar Labs</b></span>
+  </div>
+  <div class="profile">
+    <span class="avatar">AF</span>
+    <span><b>Alan Felthes</b><small>Administrator</small></span>
+  </div>
+</header>
+<div class="app-content">
+<div class="page-title"><div><a class="hint" href="my-logos.html">← Back to My Logos</a><h1>Northstar Labs</h1><p>Technology & SaaS · Project LF-2026-0018 · Updated July 6, 2026</p></div><div class="table-actions"><button class="btn btn-outline" onclick="toast('Project duplicated as a draft.')">Duplicate</button><button class="btn btn-primary" onclick="document.getElementById('exportModal').classList.add('open')">Download assets</button></div></div>
+
+<div class="detail-layout"><div>
+<section class="card"><div class="card-head"><div><h2>Generated concepts</h2><p class="hint">Choose a favorite concept for refinement and export.</p></div><span class="status ok">4 delivered</span></div><div class="card-body">
+<div class="concept-grid">
+<div class="concept-card selected" onclick="selectConcept(this,'Concept A')"><span class="concept-check">✓</span><div class="concept-stage"><svg viewBox="0 0 170 170"><path fill="#6045df" d="M85 11l15 49 49 15-49 15-15 49-15-49-49-15 49-15z"/><circle cx="85" cy="75" r="18" fill="#fff"/></svg></div><div class="concept-label"><div><b>Concept A</b><div class="hint">Geometric north star</div></div><span class="status ok">Favorite</span></div></div>
+<div class="concept-card" onclick="selectConcept(this,'Concept B')"><span class="concept-check">○</span><div class="concept-stage dark"><svg viewBox="0 0 170 170"><path fill="none" stroke="#a995ff" stroke-width="13" stroke-linecap="round" d="M40 127L85 34l45 93M55 99h60"/><circle cx="85" cy="34" r="9" fill="#fff"/></svg></div><div class="concept-label"><div><b>Concept B</b><div class="hint">Letterform + star</div></div><span class="status info">Alternative</span></div></div>
+<div class="concept-card" onclick="selectConcept(this,'Concept C')"><span class="concept-check">○</span><div class="concept-stage" style="background:#fff"><svg viewBox="0 0 170 170"><circle cx="85" cy="85" r="60" fill="#e9e4ff"/><path d="M51 110L85 45l34 65-34-18z" fill="#6045df"/></svg></div><div class="concept-label"><div><b>Concept C</b><div class="hint">Abstract navigation</div></div><span class="status info">Alternative</span></div></div>
+<div class="concept-card" onclick="selectConcept(this,'Concept D')"><span class="concept-check">○</span><div class="concept-stage" style="background:#edf9f6"><svg viewBox="0 0 170 170"><path d="M37 85c25-42 55-55 96-34-13 40-42 67-88 70 10-12 19-23 32-33-14 3-27 2-40-3z" fill="#218f72"/><circle cx="113" cy="54" r="8" fill="#fff"/></svg></div><div class="concept-label"><div><b>Concept D</b><div class="hint">Directional path</div></div><span class="status info">Alternative</span></div></div>
+</div></div></section>
+
+<section class="card" style="margin-top:18px"><div class="card-head"><h2>Refine selected concept</h2><span class="status info" id="selectedConceptLabel">Concept A</span></div><div class="card-body">
+<div class="fields"><div class="field"><label>Refinement type</label><select><option>Polish selected direction</option><option>Typography variations</option><option>Color variations</option><option>Simplify icon</option><option>Create monochrome version</option></select></div><div class="field"><label>Number of variations</label><select><option>2 variations</option><option>4 variations</option></select></div><div class="field full"><label>Instructions</label><textarea>Keep the core north-star geometry. Make the paths slightly more balanced, reduce the sharpness of the inner angles and test a warmer violet.</textarea></div></div>
+<div class="cost-box"><div class="cost-row"><span>Estimated provider cost</span><b>$0.042</b></div><div class="cost-row"><span>Pricing multiplier</span><b>5×</b></div><div class="cost-row total"><span>Estimated Service Credit charge</span><b>$0.21</b></div></div>
+<button class="btn btn-primary" style="margin-top:14px" onclick="simulateRefinement()">Generate refinements</button>
+<div id="refineProgress" style="display:none;margin-top:14px"><div class="progress"><span id="refineBar"></span></div><p class="hint" id="refineText">Preparing refinement…</p></div>
+</div></section>
+
+<section class="card" style="margin-top:18px"><div class="card-head"><h2>Project activity</h2></div><div class="card-body"><div class="timeline">
+<div class="timeline-item"><b>Concept A selected as favorite</b><p>Alan Felthes · July 6, 2026 at 21:52</p></div>
+<div class="timeline-item"><b>Four concepts generated</b><p>Provider cost $0.084 · Customer charge $0.42</p></div>
+<div class="timeline-item"><b>Prompt optimized from brand brief</b><p>Modern geometric combination mark, violet and navy.</p></div>
+<div class="timeline-item"><b>Project created</b><p>July 6, 2026 at 21:44</p></div>
+</div></div></section>
+</div>
+
+<aside class="detail-sidebar">
+<section class="card"><div class="card-head"><h2>Project summary</h2><span class="status ok">Complete</span></div><div class="card-body">
+<div class="info-list"><span>Company</span><b>Northstar Labs</b><span>Industry</span><b>Technology & SaaS</b><span>Logo type</span><b>Combination mark</b><span>Style</span><b>Modern geometric</b><span>Concepts</span><b>4</b><span>Favorite</span><b id="favoriteName">Concept A</b><span>Total charged</span><b>$0.42</b></div>
+<button class="btn btn-light" style="width:100%;margin-top:15px" onclick="document.getElementById('briefModal').classList.add('open')">View original brief</button>
+</div></section>
+<section class="card" style="margin-top:15px"><div class="card-head"><h2>Quick exports</h2></div><div class="card-body"><div class="export-grid"><button class="export-option" onclick="toast('Transparent PNG export prepared.')"><b>PNG</b><small>Transparent · 4096px</small></button><button class="export-option" onclick="toast('SVG export prepared.')"><b>SVG</b><small>Editable vector</small></button><button class="export-option" onclick="toast('PDF brand sheet prepared.')"><b>PDF</b><small>Presentation sheet</small></button><button class="export-option" onclick="toast('Complete ZIP package prepared.')"><b>ZIP</b><small>All logo assets</small></button></div></div></section>
+<section class="card" style="margin-top:15px"><div class="card-head"><h2>Brand kit status</h2></div><div class="card-body"><div class="compliance-item"><span class="check-dot ok">✓</span><div><b>Primary logo</b><p>Favorite concept selected.</p></div></div><div class="compliance-item"><span class="check-dot bad">!</span><div><b>Typography system</b><p>Not generated yet.</p></div></div><div class="compliance-item"><span class="check-dot bad">!</span><div><b>Color palette</b><p>Needs final approval.</p></div></div><button class="btn btn-primary" style="width:100%;margin-top:13px" onclick="toast('Brand kit workflow opened.')">Build brand kit</button></div></section>
+</aside></div>
+</div></main></div>
+
+<div class="modal" id="exportModal"><div class="modal-card"><div class="modal-head"><div><b>Download logo assets</b><div class="hint">Export the selected concept in multiple formats.</div></div><button class="close" onclick="document.getElementById('exportModal').classList.remove('open')">×</button></div><div class="modal-body"><div class="fields"><div class="field"><label>Concept</label><select><option>Concept A — Favorite</option><option>Concept B</option><option>Concept C</option><option>Concept D</option></select></div><div class="field"><label>Color mode</label><select><option>Full color</option><option>Black</option><option>White</option><option>Monochrome package</option></select></div><div class="field full"><label>Formats</label><div class="chips"><button class="chip selected">PNG</button><button class="chip selected">SVG</button><button class="chip selected">PDF</button><button class="chip">JPG</button></div></div><div class="field"><label>Raster size</label><select><option>4096 × 4096</option><option>2048 × 2048</option><option>1024 × 1024</option></select></div><div class="field"><label>Background</label><select><option>Transparent</option><option>White</option><option>Dark navy</option></select></div></div><button class="btn btn-primary" style="width:100%;margin-top:16px" onclick="document.getElementById('exportModal').classList.remove('open');toast('Logo asset package prepared.')">Prepare download package</button></div></div></div>
+<div class="modal" id="briefModal"><div class="modal-card"><div class="modal-head"><b>Original brand brief</b><button class="close" onclick="document.getElementById('briefModal').classList.remove('open')">×</button></div><div class="modal-body"><div class="info-list"><span>Tagline</span><b>Ideas that find the way</b><span>Audience</span><b>Modern startup teams</b><span>Personality</span><b>Innovative, trustworthy, minimal</b><span>Symbol</span><b>North star made from intersecting paths</b><span>Avoid</span><b>Light bulbs and copied symbols</b></div><div class="notice info" style="margin-top:15px">AI-generated concepts require human review and trademark clearance before commercial adoption.</div></div></div></div>
+<div class="toast" id="toast"></div><script src="config.js"></script><script src="app.js"></script><script>
+function selectConcept(card,name){
+  document.querySelectorAll('.concept-card').forEach(x=>{x.classList.remove('selected');x.querySelector('.concept-check').textContent='○';});
+  card.classList.add('selected');card.querySelector('.concept-check').textContent='✓';
+  document.getElementById('selectedConceptLabel').textContent=name;
+  document.getElementById('favoriteName').textContent=name;
+  toast(name+' selected as project favorite.');
+}
+function simulateRefinement(){
+  const box=document.getElementById('refineProgress'),bar=document.getElementById('refineBar'),text=document.getElementById('refineText');
+  box.style.display='block';bar.style.width='22%';
+  setTimeout(()=>{bar.style.width='58%';text.textContent='Generating controlled variations…';},500);
+  setTimeout(()=>{bar.style.width='100%';text.textContent='Two refinements added to the project.';toast('Refinement complete. $0.21 settled from Service Credits.');},1300);
+}
+</script></body></html>

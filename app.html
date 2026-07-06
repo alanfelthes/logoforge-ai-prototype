@@ -1,0 +1,53 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Create Logo — LogoForge AI</title><link rel="stylesheet" href="styles.css"></head><body><div class="app-shell">
+
+<aside class="sidebar" id="sidebar">
+  <div class="side-brand"><a class="brand" href="index.html"><span class="brand-mark">L</span><span><b>LogoForge AI</b><small style="color:#9da8bb">Business platform</small></span></a></div>
+  <div class="nav-title">Workspace</div>
+  <a class="side-link" href="app.html">✦ Create logo</a>
+  <a class="side-link" href="my-logos.html">▧ My logos</a>
+  <a class="side-link" href="wallet.html">◈ Service credits</a>
+  <a class="side-link" href="billing-history.html">▤ Billing history</a>
+  <div class="nav-title">Financial reports</div>
+  <a class="side-link" href="company-receivables-report.html">▥ Company receivables</a>
+  <a class="side-link" href="site-wallet-report.html">◇ Site wallet report</a>
+  <div class="nav-title">Platform administration</div>
+  <a class="side-link" href="admin.html">◎ Compliance center</a>
+  <a class="side-link" href="business-websites.html">⇄ Business websites</a>
+  <a class="side-link" href="api-webhooks.html">&lt;/&gt; API & webhooks</a>
+  <a class="side-link" href="site-payment-demo.html">◉ Multi-site demo</a>
+  <div class="side-card"><small>Service credit balance</small><b data-balance>$42.80</b><a class="btn" href="wallet.html">Add credits</a></div>
+</aside>
+
+<main class="app-main">
+<header class="app-top"><div style="display:flex;align-items:center;gap:12px"><button class="btn btn-light mobile-menu" onclick="toggleSidebar()">☰</button><span class="crumb">LogoForge AI / <b>Customer workspace</b></span></div><div class="profile"><span class="avatar">AF</span><span><b>Alan Felthes</b><small>Administrator</small></span></div></header>
+<div class="app-content">
+<div class="page-title"><div><span class="eyebrow">✦ AI Logo Generator</span><h1 style="margin-top:10px">Create an original logo concept</h1><p>Complete the guided brief, review the price authorization and generate visual directions.</p></div><a class="btn btn-outline" href="ai-output-policy.html">AI output rules</a></div>
+<div class="grid-2"><section class="card"><div class="card-head"><h2>Brand and visual brief</h2><span class="status ok">Auto-saved</span></div><div class="card-body">
+<div class="section-label">Brand identity</div><div class="fields">
+<div class="field"><label>Company name <span class="req">*</span></label><input id="companyName" value="Northstar Labs" oninput="updateLogoPreview()"></div>
+<div class="field"><label>Tagline</label><input id="tagline" value="Ideas that find the way" oninput="updateLogoPreview()"></div>
+<div class="field"><label>Industry</label><select><option>Technology & SaaS</option><option>Food & Beverage</option><option>Finance</option><option>Travel</option><option>Healthcare</option><option>Other</option></select></div>
+<div class="field"><label>Target audience</label><input value="Modern startups and innovation teams"></div>
+<div class="field full"><label>What does the business do? <span class="req">*</span></label><textarea id="description" oninput="updateLogoPreview()">An AI product studio that transforms early business ideas into practical digital products.</textarea></div>
+</div>
+<div class="section-label" style="margin-top:24px">Brand personality</div><div class="chips"><button class="chip selected">Innovative</button><button class="chip selected">Trustworthy</button><button class="chip">Playful</button><button class="chip">Premium</button><button class="chip selected">Minimal</button><button class="chip">Bold</button><button class="chip">Friendly</button></div>
+<div class="section-label" style="margin-top:24px">Visual direction</div><div class="fields">
+<div class="field"><label>Logo type</label><select><option>Combination mark</option><option>Wordmark</option><option>Lettermark</option><option>Symbol / icon</option><option>Emblem</option></select></div>
+<div class="field"><label>Design style</label><select><option>Modern geometric</option><option>Clean minimal</option><option>Luxury editorial</option><option>Organic handmade</option><option>Bold futuristic</option></select></div>
+<div class="field full"><label>Icon or symbol concept</label><input id="symbol" value="a north star made from two intersecting paths" oninput="updateLogoPreview()"></div>
+<div class="field full"><label>Elements to avoid</label><input id="avoid" value="generic light bulbs, protected characters, copied brand symbols and complex mockup backgrounds" oninput="updateLogoPreview()"></div>
+<div class="field"><label>Variations</label><select id="variations" onchange="estimateLogoCost()"><option value="2">2 concepts</option><option value="4" selected>4 concepts</option><option value="6">6 concepts</option></select></div>
+<div class="field"><label>Quality</label><select id="quality" onchange="estimateLogoCost()"><option value="draft">Draft</option><option value="standard" selected>Standard</option><option value="premium">Premium</option></select></div>
+</div>
+<div class="notice info" style="margin-top:17px"><b>Intellectual property notice:</b> AI output may resemble existing material, may not be unique and may not qualify for copyright or trademark protection. LogoForge does not perform trademark clearance.</div>
+<label class="checkbox" style="margin-top:15px"><input id="generationConsent" type="checkbox"><span>I authorize a temporary service-credit reservation based on the displayed estimate and a final charge equal to <b>5× the measured provider cost</b>, subject to the maximum reservation. I also acknowledge the <a href="ai-output-policy.html">AI Output Policy</a>.</span></label>
+<div class="actions"><span class="hint">Failed generations automatically release or reverse the reservation.</span><button class="btn btn-primary" id="generateBtn" onclick="generateLogo()">Generate concepts ✦</button></div>
+<div id="generationProgress" style="display:none;margin-top:15px"><div class="progress"><span id="generationBar"></span></div><p class="hint" id="generationText"></p></div>
+</div></section>
+<aside><div class="card" style="position:sticky;top:92px"><div class="card-head"><h2>Live preview & authorization</h2><span class="status info">Estimate</span></div><div class="card-body">
+<div class="preview"><div class="preview-mark" id="previewMark">N</div><h3 id="previewName">Northstar Labs</h3><p id="previewTag">Ideas that find the way</p></div>
+<div class="cost-box"><div class="cost-row"><span>Estimated provider API cost</span><b id="providerCost">$0.084</b></div><div class="cost-row"><span>Disclosed platform multiplier</span><b style="color:#5d3ed5">× 5.00</b></div><div class="cost-row total"><span>Estimated final charge</span><span id="platformCharge">$0.42</span></div></div>
+<div class="notice" style="margin-top:12px">The exact final charge is calculated from the provider usage record and versioned price table. Applicable tax is displayed separately.</div>
+<label style="display:block;margin-top:15px">Optimized prompt preview</label><div id="promptPreview" style="background:#f6f7fa;border-radius:10px;padding:12px;font-size:11px;color:#637086;line-height:1.55;margin-top:7px"></div>
+</div></div></aside></div>
+</div></main></div><div class="toast" id="toast"></div><script src="config.js"></script><script src="app.js"></script></body></html>

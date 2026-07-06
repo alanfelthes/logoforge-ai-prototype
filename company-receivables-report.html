@@ -1,0 +1,114 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Company Receivables Report — LogoForge AI</title><link rel="stylesheet" href="styles.css"></head>
+<body><div class="app-shell">
+
+<aside class="sidebar" id="sidebar">
+  <div class="side-brand"><a class="brand" href="index.html"><span class="brand-mark">L</span><span><b>LogoForge AI</b><small style="color:#9da8bb">Business platform</small></span></a></div>
+  <div class="nav-title">Workspace</div>
+  <a class="side-link" href="app.html">✦ Create logo</a>
+  <a class="side-link" href="my-logos.html">▧ My logos</a>
+  <a class="side-link" href="wallet.html">◈ Service credits</a>
+  <a class="side-link" href="billing-history.html">▤ Billing history</a>
+  <div class="nav-title">Financial reports</div>
+  <a class="side-link" href="company-receivables-report.html">▥ Company receivables</a>
+  <a class="side-link" href="site-wallet-report.html">◇ Site wallet report</a>
+  <div class="nav-title">Platform administration</div>
+  <a class="side-link" href="admin.html">◎ Compliance center</a>
+  <a class="side-link" href="business-websites.html">⇄ Business websites</a>
+  <a class="side-link" href="api-webhooks.html">&lt;/&gt; API & webhooks</a>
+  <a class="side-link" href="site-payment-demo.html">◉ Multi-site demo</a>
+  <div class="side-card"><small>Service credit balance</small><b data-balance>$42.80</b><a class="btn" href="wallet.html">Add credits</a></div>
+</aside>
+
+<main class="app-main">
+<header class="app-top">
+  <div style="display:flex;align-items:center;gap:12px">
+    <button class="btn btn-light mobile-menu" onclick="toggleSidebar()">☰</button>
+    <span class="crumb">LogoForge AI / <b id="pageCrumb">Financial report</b></span>
+  </div>
+  <div class="profile"><span class="avatar">AF</span><span><b>Alan Felthes</b><small>Administrator</small></span></div>
+</header>
+<div class="app-content">
+<div class="page-title"><div><span class="eyebrow">Consolidated financial report</span><h1 style="margin-top:10px">Company Receivables</h1><p>All Stripe receipts across websites operated by the company, reconciled from gross payment to net bank payout.</p></div><div class="table-actions"><button class="btn btn-outline" onclick="toast('CSV export prepared in prototype mode.')">Export CSV</button><button class="btn btn-primary" onclick="toast('PDF report prepared in prototype mode.')">Export PDF</button></div></div>
+
+<section class="card" style="margin-bottom:18px"><div class="card-body"><div class="report-filters">
+<div class="field"><label>Period</label><select id="periodFilter"><option>Jul 1–6, 2026</option><option>June 2026</option><option>Q2 2026</option><option>Year to date</option></select></div>
+<div class="field wide"><label>Business website</label><select id="siteFilter" onchange="applyCompanyFilter()"><option value="all">All websites</option><option value="logoforge">LogoForge AI</option><option value="travelsmart">TravelSmart</option><option value="gold">Gold Custody SaaS</option></select></div>
+<div class="field"><label>Currency</label><select><option>USD consolidated</option><option>Original currency</option><option>THB reporting</option></select></div>
+<div class="field"><label>Payment status</label><select id="statusFilter" onchange="filterPaymentRows()"><option value="all">All statuses</option><option value="paid">Paid</option><option value="refunded">Refunded</option><option value="failed">Failed</option><option value="disputed">Disputed</option></select></div>
+<div style="margin-left:auto"><button class="btn btn-light" onclick="toast('Report refreshed from the latest reconciled events.')">↻ Refresh</button></div>
+</div></div></section>
+
+<div class="metric-row">
+<div class="card metric"><small>Gross payment volume</small><b id="grossMetric">$48,920.00</b><span class="delta up">↑ 14.2% vs prior period</span></div>
+<div class="card metric"><small>Refunds</small><b id="refundMetric">$1,284.00</b><span class="delta down">2.6% of gross</span></div>
+<div class="card metric"><small>Taxes collected</small><b id="taxMetric">$2,936.40</b><span class="delta neutral">Held for tax reporting</span></div>
+<div class="card metric"><small>Stripe processing fees</small><b id="feeMetric">$1,519.38</b><span class="delta neutral">3.11% effective rate</span></div>
+<div class="card metric"><small>Net receivable</small><b id="netMetric">$46,116.62</b><span class="delta up">After refunds and fees</span></div>
+<div class="card metric"><small>Pending bank payout</small><b id="pendingMetric">$8,742.15</b><span class="delta neutral">Next expected Jul 8</span></div>
+</div>
+
+<div class="report-grid">
+<section class="card chart-box"><div class="chart-head"><div><h3>Gross payments and net receipts</h3><p>Daily payment activity after refunds and Stripe fees.</p></div><div class="legend"><span><i style="background:#6d4aff"></i>Gross</span><span><i style="background:#17a378"></i>Net</span></div></div>
+<svg class="svg-chart" viewBox="0 0 760 270"><defs><linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6d4aff" stop-opacity=".18"/><stop offset="100%" stop-color="#6d4aff" stop-opacity="0"/></linearGradient></defs>
+<line class="chart-grid-line" x1="55" y1="30" x2="735" y2="30"/><line class="chart-grid-line" x1="55" y1="82" x2="735" y2="82"/><line class="chart-grid-line" x1="55" y1="134" x2="735" y2="134"/><line class="chart-grid-line" x1="55" y1="186" x2="735" y2="186"/><line class="chart-grid-line" x1="55" y1="238" x2="735" y2="238"/>
+<text class="chart-label" x="8" y="34">$12k</text><text class="chart-label" x="15" y="86">$9k</text><text class="chart-label" x="15" y="138">$6k</text><text class="chart-label" x="15" y="190">$3k</text><text class="chart-label" x="30" y="242">$0</text>
+<path class="chart-area" d="M55 238 L55 165 L165 127 L275 150 L385 74 L495 98 L605 43 L715 83 L715 238 Z"/><polyline class="chart-gross" points="55,165 165,127 275,150 385,74 495,98 605,43 715,83"/><polyline class="chart-net" points="55,176 165,139 275,161 385,88 495,111 605,58 715,96"/>
+<text class="chart-label" x="45" y="260">Jul 1</text><text class="chart-label" x="155" y="260">Jul 2</text><text class="chart-label" x="265" y="260">Jul 3</text><text class="chart-label" x="375" y="260">Jul 4</text><text class="chart-label" x="485" y="260">Jul 5</text><text class="chart-label" x="595" y="260">Jul 6</text><text class="chart-label" x="705" y="260">Jul 7</text>
+</svg></section>
+<aside class="card chart-box"><div class="chart-head"><div><h3>Receivables by website</h3><p>Share of company gross volume.</p></div></div><div class="bar-list">
+<div><div class="bar-item-head"><span>TravelSmart</span><b>$27,420 · 56.1%</b></div><div class="bar-track"><div class="bar-fill" style="width:56.1%"></div></div></div>
+<div><div class="bar-item-head"><span>LogoForge AI</span><b>$14,880 · 30.4%</b></div><div class="bar-track"><div class="bar-fill green" style="width:30.4%"></div></div></div>
+<div><div class="bar-item-head"><span>Gold Custody SaaS</span><b>$6,620 · 13.5%</b></div><div class="bar-track"><div class="bar-fill gold" style="width:13.5%"></div></div></div>
+</div><div class="notice info" style="margin-top:20px"><b>Unified merchant:</b> all amounts settle to the same company Stripe balance and bank account. Website allocation is reporting metadata only.</div></aside>
+</div>
+
+<div class="grid-even" style="margin-top:18px">
+<section class="card"><div class="card-head"><h2>Payout reconciliation</h2><span class="status ok">Reconciled</span></div><div class="card-body"><div class="reconcile">
+<span>Successful customer payments</span><b>$48,920.00</b><span>Less customer refunds</span><b class="money-negative">−$1,284.00</b><span>Less Stripe processing fees</span><b class="money-negative">−$1,519.38</b><span>Less dispute withdrawals</span><b class="money-negative">−$0.00</b><span>Tax collected in payment total</span><b>$2,936.40</b><span class="total-label">Net available in Stripe</span><b class="total-value">$46,116.62</b><span>Already paid to bank</span><b class="money-positive">$37,374.47</b><span>Pending bank payout</span><b>$8,742.15</b>
+</div></div></section>
+<section class="card"><div class="card-head"><h2>Operational indicators</h2></div><div class="card-body"><div class="grid-even">
+<div class="stat"><small>Successful payments</small><b>1,284</b><span class="status ok">96.8%</span></div><div class="stat"><small>Failed payments</small><b>42</b><span class="status warn">3.2%</span></div><div class="stat"><small>Average payment</small><b>$38.10</b><span class="hint">Across all sites</span></div><div class="stat"><small>Refund rate</small><b>2.6%</b><span class="hint">33 transactions</span></div><div class="stat"><small>Dispute rate</small><b>0.08%</b><span class="status ok">Low</span></div><div class="stat"><small>Webhook delivery</small><b>99.9%</b><span class="status ok">Healthy</span></div>
+</div></div></section></div>
+
+<section class="card" style="margin-top:18px"><div class="card-head"><div><h2>Website settlement summary</h2><p class="hint">Gross, adjustments and net cash contribution by source website.</p></div><button class="btn btn-light" onclick="toast('Website settlement summary exported.')">Download</button></div><div style="overflow:auto"><table>
+<thead><tr><th>Website</th><th>Payments</th><th>Gross</th><th>Refunds</th><th>Stripe fees</th><th>Tax collected</th><th>Net receipts</th><th>Share</th></tr></thead><tbody>
+<tr><td><div class="site-badge"><i>TS</i><div><b>TravelSmart</b><small>site_travelsmart</small></div></div></td><td>622</td><td>$27,420.00</td><td class="money-negative">−$840.00</td><td class="money-negative">−$852.11</td><td>$1,645.20</td><td class="money-positive">$25,727.89</td><td>56.1%</td></tr>
+<tr><td><div class="site-badge"><i>LF</i><div><b>LogoForge AI</b><small>site_logoforge</small></div></div></td><td>514</td><td>$14,880.00</td><td class="money-negative">−$294.00</td><td class="money-negative">−$461.28</td><td>$892.80</td><td class="money-positive">$14,124.72</td><td>30.4%</td></tr>
+<tr><td><div class="site-badge"><i>GC</i><div><b>Gold Custody SaaS</b><small>site_goldcustody</small></div></div></td><td>148</td><td>$6,620.00</td><td class="money-negative">−$150.00</td><td class="money-negative">−$205.99</td><td>$398.40</td><td class="money-positive">$6,264.01</td><td>13.5%</td></tr>
+<tr style="background:#faf9ff;font-weight:800"><td>Total company</td><td>1,284</td><td>$48,920.00</td><td class="money-negative">−$1,284.00</td><td class="money-negative">−$1,519.38</td><td>$2,936.40</td><td class="money-positive">$46,116.62</td><td>100%</td></tr>
+</tbody></table></div></section>
+
+<section class="card" style="margin-top:18px"><div class="card-head"><div><h2>Payment transaction detail</h2><p class="hint">Customer payment activity across all registered company websites.</p></div><div class="report-tabs"><button class="report-tab active">Payments</button><button class="report-tab">Refunds</button><button class="report-tab">Disputes</button><button class="report-tab">Payouts</button></div></div><div style="overflow:auto"><table id="companyPaymentTable">
+<thead><tr><th>Created</th><th>Website</th><th>Customer / order</th><th>Payment reference</th><th>Gross</th><th>Fee</th><th>Net</th><th>Status</th><th></th></tr></thead><tbody>
+<tr data-status="paid" data-site="travelsmart"><td>Jul 6, 21:18</td><td>TravelSmart</td><td>usr_88421<br><span class="hint">booking_75018</span></td><td>pi_3R7A...81K</td><td>$240.00</td><td>−$7.26</td><td class="money-positive">$232.74</td><td><span class="status ok">Paid</span></td><td><button class="icon-btn" onclick="toast('Opening payment detail.')">View</button></td></tr>
+<tr data-status="paid" data-site="logoforge"><td>Jul 6, 20:42</td><td>LogoForge AI</td><td>user_10018<br><span class="hint">credit_order_9914</span></td><td>pi_3R79...F20</td><td>$25.00</td><td>−$1.03</td><td class="money-positive">$23.97</td><td><span class="status ok">Paid</span></td><td><button class="icon-btn" onclick="toast('Opening payment detail.')">View</button></td></tr>
+<tr data-status="refunded" data-site="travelsmart"><td>Jul 6, 18:04</td><td>TravelSmart</td><td>usr_77211<br><span class="hint">booking_74892</span></td><td>re_3R72...991</td><td>$180.00</td><td>$0.00</td><td class="money-negative">−$180.00</td><td><span class="status warn">Refunded</span></td><td><button class="icon-btn" onclick="toast('Opening refund detail.')">View</button></td></tr>
+<tr data-status="failed" data-site="gold"><td>Jul 6, 17:29</td><td>Gold Custody SaaS</td><td>customer_192<br><span class="hint">invoice_8831</span></td><td>pi_3R6X...A10</td><td>$89.00</td><td>$0.00</td><td>$0.00</td><td><span class="status bad">Failed</span></td><td><button class="icon-btn" onclick="toast('Opening failed payment detail.')">View</button></td></tr>
+<tr data-status="paid" data-site="travelsmart"><td>Jul 6, 15:51</td><td>TravelSmart</td><td>usr_29104<br><span class="hint">booking_74744</span></td><td>pi_3R6C...420</td><td>$510.00</td><td>−$15.09</td><td class="money-positive">$494.91</td><td><span class="status ok">Paid</span></td><td><button class="icon-btn" onclick="toast('Opening payment detail.')">View</button></td></tr>
+</tbody></table></div></section>
+<div class="notice info" style="margin-top:18px"><b>Accounting boundary:</b> purchases of LogoForge Service Credits appear here as cash receipts, while unused credits remain an outstanding service obligation tracked in the separate Site Wallet Report.</div>
+</div></main></div><div class="toast" id="toast"></div>
+<script src="config.js"></script><script src="app.js"></script><script>
+document.getElementById('pageCrumb').textContent='Company Receivables';
+function filterPaymentRows(){
+  const status=document.getElementById('statusFilter').value;
+  const site=document.getElementById('siteFilter').value;
+  document.querySelectorAll('#companyPaymentTable tbody tr').forEach(row=>{
+    const statusOk=status==='all'||row.dataset.status===status;
+    const siteOk=site==='all'||row.dataset.site===site;
+    row.style.display=statusOk&&siteOk?'':'none';
+  });
+}
+function applyCompanyFilter(){
+  const site=document.getElementById('siteFilter').value;
+  const datasets={
+    all:['$48,920.00','$1,284.00','$2,936.40','$1,519.38','$46,116.62','$8,742.15'],
+    logoforge:['$14,880.00','$294.00','$892.80','$461.28','$14,124.72','$2,510.40'],
+    travelsmart:['$27,420.00','$840.00','$1,645.20','$852.11','$25,727.89','$5,060.75'],
+    gold:['$6,620.00','$150.00','$398.40','$205.99','$6,264.01','$1,171.00']
+  };
+  const ids=['grossMetric','refundMetric','taxMetric','feeMetric','netMetric','pendingMetric'];
+  datasets[site].forEach((value,index)=>document.getElementById(ids[index]).textContent=value);
+  filterPaymentRows();
+}
+</script></body></html>

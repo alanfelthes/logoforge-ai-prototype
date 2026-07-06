@@ -1,0 +1,37 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Website Detail — LogoForge AI</title><link rel="stylesheet" href="styles.css"></head><body><div class="app-shell">
+
+<aside class="sidebar" id="sidebar">
+  <div class="side-brand"><a class="brand" href="index.html"><span class="brand-mark">L</span><span><b>LogoForge AI</b><small style="color:#9da8bb">Business platform</small></span></a></div>
+  <div class="nav-title">Workspace</div>
+  <a class="side-link" href="app.html">✦ Create logo</a>
+  <a class="side-link" href="my-logos.html">▧ My logos</a>
+  <a class="side-link" href="wallet.html">◈ Service credits</a>
+  <a class="side-link" href="billing-history.html">▤ Billing history</a>
+  <div class="nav-title">Financial reports</div>
+  <a class="side-link" href="company-receivables-report.html">▥ Company receivables</a>
+  <a class="side-link" href="site-wallet-report.html">◇ Site wallet report</a>
+  <div class="nav-title">Platform administration</div>
+  <a class="side-link" href="admin.html">◎ Compliance center</a>
+  <a class="side-link" href="business-websites.html">⇄ Business websites</a>
+  <a class="side-link" href="api-webhooks.html">&lt;/&gt; API & webhooks</a>
+  <a class="side-link" href="site-payment-demo.html">◉ Multi-site demo</a>
+  <div class="side-card"><small>Service credit balance</small><b data-balance>$42.80</b><a class="btn" href="wallet.html">Add credits</a></div>
+</aside>
+
+<main class="app-main">
+<header class="app-top">
+  <div style="display:flex;align-items:center;gap:12px">
+    <button class="btn btn-light mobile-menu" onclick="toggleSidebar()">☰</button>
+    <span class="crumb">LogoForge AI / <b id="pageCrumb">Prototype</b></span>
+  </div>
+  <div class="profile"><span class="avatar">AF</span><span><b>Alan Felthes</b><small>Administrator</small></span></div>
+</header>
+<div class="app-content">
+<div class="page-title"><div><span class="eyebrow">Website configuration</span><h1 style="margin-top:10px">TravelSmart</h1><p>Manage payment integration settings for a website operated by the same company.</p></div><div class="table-actions"><a class="btn btn-outline" href="business-websites.html">Back to websites</a><button class="btn btn-primary" onclick="toast('Settings saved.')">Save changes</button></div></div>
+<div class="site-config-grid">
+<section class="card"><div class="card-head"><h2>Website details</h2><span class="status ok">Active</span></div><div class="card-body"><div class="fields"><div class="field"><label>Website name</label><input value="TravelSmart"></div><div class="field"><label>Site ID</label><input value="site_travelsmart" readonly></div><div class="field full"><label>Allowed production origin</label><input value="https://app.travelsmart.example"></div><div class="field full"><label>Allowed test origin</label><input value="http://localhost:3000"></div><div class="field full"><label>Webhook endpoint</label><input value="https://api.travelsmart.example/webhooks/logoforge-pay"></div></div><div class="notice success" style="margin-top:14px"><b>Same company:</b> the checkout uses the central legal merchant and the same Stripe account.</div></div></section>
+<section class="card"><div class="card-head"><h2>API credentials</h2><button class="btn btn-light" onclick="toast('API key rotated in test mode.')">Rotate key</button></div><div class="card-body"><label>Public key</label><div class="copy-row"><input value="site_test_4f8ca921" readonly><button class="btn btn-light" onclick="toast('Copied.')">Copy</button></div><label style="margin-top:14px">Secret key</label><div class="key-box">sk_site_test_••••••••••••••••••••••••••••A921</div><div class="notice" style="margin-top:14px"><b>Security:</b> source websites must create sessions from their backend only. Never expose the secret key in browser code.</div></div></section>
+</div>
+<div class="grid-even" style="margin-top:18px"><section class="card"><div class="card-head"><h2>Payment settings</h2></div><div class="card-body"><div class="fields"><div class="field"><label>Default currency</label><select><option>USD</option><option>THB</option><option>EUR</option></select></div><div class="field"><label>Minimum amount</label><input value="$5.00"></div><div class="field"><label>Maximum amount</label><input value="$5,000.00"></div><div class="field"><label>Tax behavior</label><select><option>Calculated by central checkout</option><option>Tax included</option><option>Tax exempt</option></select></div></div></div></section>
+<section class="card"><div class="card-head"><h2>Webhook health</h2></div><div class="card-body"><div class="webhook-log"><div class="webhook-item"><div><b>site_payment.succeeded</b><p>Delivered in 184ms · Jul 6, 21:18</p></div><span class="status ok">200</span></div><div class="webhook-item"><div><b>site_payment.failed</b><p>Delivered in 221ms · Jul 6, 17:29</p></div><span class="status ok">200</span></div><div class="webhook-item"><div><b>site_payment.refunded</b><p>Retry scheduled after timeout</p></div><span class="status warn">Retry</span></div></div></div></section></div>
+</div></main></div><div class="toast" id="toast"></div><script src="config.js"></script><script src="app.js"></script><script>document.getElementById('pageCrumb').textContent='Website Detail';</script></body></html>

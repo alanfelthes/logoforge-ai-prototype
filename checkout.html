@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Secure Checkout — LogoForge Pay</title><link rel="stylesheet" href="styles.css"></head><body>
+<div class="checkout-page"><section class="checkout-card"><div class="checkout-head"><a class="brand" href="index.html"><span class="brand-mark">L</span><span><b>LogoForge Pay</b><small>Secure checkout</small></span></a><span>🔒</span></div>
+<div class="checkout-body" id="checkoutForm">
+<div class="merchant-box"><b id="merchantName">Merchant</b><span id="merchantDetails"></span><br>Support: <a data-legal-href="supportEmail"><span data-legal="supportEmail"></span></a> · <a href="refund-policy.html" target="_blank">Refund policy</a></div>
+<div class="order-summary"><div class="summary-row"><span id="productName">Service credits</span><span id="orderRef"></span></div><div class="summary-row"><span>Subtotal</span><span id="subtotal">$25.00</span></div><div class="summary-row"><span>Tax</span><span id="taxAmount">Calculated by Stripe</span></div><div class="summary-row total"><span>Total authorization</span><span id="total">$25.00 USD</span></div></div>
+<div class="notice info"><b>Production flow:</b> the button below redirects this popup to a Stripe-hosted Checkout Session. Stripe collects card and billing data; LogoForge never receives raw card numbers.</div>
+<div class="field" style="margin-top:14px"><label>Email for receipt <span class="req">*</span></label><input id="receiptEmail" type="email" value="customer@example.com"></div>
+<label class="checkbox" style="margin-top:14px"><input id="termsCheck" type="checkbox"><span>I agree to the <a href="terms.html" target="_blank">Terms of Service</a>, acknowledge the <a href="privacy.html" target="_blank">Privacy Policy</a>, and have reviewed the <a href="refund-policy.html" target="_blank">Refund & Cancellation Policy</a>.</span></label>
+<label class="checkbox" id="creditNotice" style="margin-top:10px"><input id="creditCheck" type="checkbox"><span>I understand these are closed-loop service credits with no withdrawal, transfer or cash-redemption function, except refunds required by law or this policy.</span></label>
+<button class="btn btn-primary" style="width:100%;margin-top:16px" onclick="startStripeSimulation()">Continue to Stripe Checkout</button>
+<button class="btn btn-light" style="width:100%;margin-top:8px" onclick="finishPayment('canceled')">Cancel and close</button>
+<div class="hint" style="text-align:center;margin-top:13px">Prototype only — no card is charged. <a href="#" onclick="finishPayment('failed');return false">Simulate a failed payment</a>.</div>
+</div>
+<div class="checkout-body" id="stripeSimulation" style="display:none"><div class="stripe-placeholder">Stripe Checkout · Test simulation</div><p class="hint" style="text-align:center;margin:14px 0">In production this screen is hosted by Stripe and can perform 3D Secure authentication when required.</p><div class="field"><label>Test card</label><input value="4242 4242 4242 4242" readonly></div><div class="grid-even" style="margin-top:12px"><div class="field"><label>Expiry</label><input value="12 / 30" readonly></div><div class="field"><label>CVC</label><input value="123" readonly></div></div><button class="btn btn-primary" style="width:100%;margin-top:16px" onclick="finishPayment('paid')">Simulate successful Stripe payment</button><button class="btn btn-danger" style="width:100%;margin-top:8px" onclick="finishPayment('failed')">Simulate decline</button></div>
+<div class="checkout-body" id="checkoutResult" style="display:none"><div class="result-box"><div class="result-icon ok" id="resultIcon">✓</div><h2 id="resultTitle">Payment confirmed</h2><p class="hint" id="resultText">The verified result is being sent to the calling website.</p><p class="hint">Payment reference: <code id="paymentReference"></code></p></div></div>
+<div style="padding:13px 20px;background:#fafbfc;border-top:1px solid var(--line);font-size:10px;line-height:1.5;color:#7b8598;text-align:center">Payment fulfillment must rely on verified Stripe webhooks, not the browser redirect or popup message.</div>
+</section></div><script src="config.js"></script><script>
+const params=new URLSearchParams(location.search);
+const purchaseType=params.get("type")||"site_payment";
+const amountMajor=Number(params.get("amount")||25),amountMinor=Math.round(amountMajor*100),currency=(params.get("currency")||"USD").toUpperCase();
+const merchant=params.get("merchant")||"Registered merchant",product=params.get("product")||"Online service";
+const siteId=params.get("site_id")||"logoforge",sourceCustomer=params.get("source_customer_id")||"",sourceOrder=params.get("source_order_id")||"";
+const sessionId="eps_"+Math.random().toString(36).slice(2,11).toUpperCase();
+const money=new Intl.NumberFormat("en-US",{style:"currency",currency}).format(amountMajor);
+document.getElementById("merchantName").textContent=merchant;
+document.getElementById("merchantDetails").textContent=purchaseType==="service_credits"?"Seller of LogoForge digital services":"Payment initiated by another website operated by the same legal merchant";
+document.getElementById("productName").textContent=product;document.getElementById("subtotal").textContent=money;document.getElementById("total").textContent=money+" "+currency;
+document.getElementById("orderRef").textContent=sourceOrder?sourceOrder:"";
+if(purchaseType!=="service_credits")document.getElementById("creditNotice").style.display="none";
+function startStripeSimulation(){
+  if(!document.getElementById("termsCheck").checked){alert("Accept the legal terms before continuing.");return;}
+  if(purchaseType==="service_credits"&&!document.getElementById("creditCheck").checked){alert("Acknowledge the service-credit conditions.");return;}
+  document.getElementById("checkoutForm").style.display="none";document.getElementById("stripeSimulation").style.display="block";
+}
+function finishPayment(status){
+  document.getElementById("checkoutForm").style.display="none";document.getElementById("stripeSimulation").style.display="none";document.getElementById("checkoutResult").style.display="block";
+  const icon=document.getElementById("resultIcon"),title=document.getElementById("resultTitle"),text=document.getElementById("resultText");
+  if(status==="paid"){icon.className="result-icon ok";icon.textContent="✓";title.textContent="Payment confirmed";text.textContent="A verified server webhook would now fulfill the purchase and send the receipt.";}
+  else{icon.className="result-icon bad";icon.textContent=status==="failed"?"!":"×";title.textContent=status==="failed"?"Payment failed":"Payment canceled";text.textContent="No purchase is fulfilled. The calling website is notified of the unsuccessful result.";}
+  document.getElementById("paymentReference").textContent=sessionId;
+  const payload={type:"LOGOFORGE_PAYMENT_RESULT",purchase_type:purchaseType,status,payment_session_id:sessionId,site_id:siteId,source_customer_id:sourceCustomer,source_order_id:sourceOrder,amount:amountMinor,currency,policy_version:"2026-07-06",timestamp:new Date().toISOString()};
+  try{if(window.opener&&!window.opener.closed)window.opener.postMessage(payload,"*");localStorage.setItem("lf_last_payment",JSON.stringify(payload));}catch(e){}
+  setTimeout(()=>window.close(),1700);
+}
+</script></body></html>
