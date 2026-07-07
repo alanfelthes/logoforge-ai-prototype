@@ -3,45 +3,100 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Add Wallet Credit — LogoForge AI</title>
+  <title>Add Wallet Credit — Example External Wallet</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .amount-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .amount-option {
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 750;
+      cursor: pointer;
+      transition: .16s ease;
+    }
+
+    .amount-option:hover {
+      border-color: #8d76ef;
+      background: #f7f4ff;
+    }
+
+    .amount-option.active {
+      border-color: #6d4aff;
+      background: #6d4aff;
+      color: #fff;
+      box-shadow: 0 7px 18px rgba(109,74,255,.2);
+    }
+
+    #customAmountWrap {
+      display: none;
+      margin-top: 14px;
+    }
+
+    #customAmountWrap.open {
+      display: block;
+    }
+  </style>
 </head>
 <body style="min-height:100vh;display:grid;place-items:center;background:#f6f7fb">
   <main style="width:min(460px,calc(100% - 32px))">
     <div class="card">
       <div class="card-body" style="padding:28px">
-        <a class="brand" href="index.html" style="margin-bottom:24px">
-          <span class="brand-mark">L</span>
-          <span><b>LogoForge AI</b><small>Wallet</small></span>
-        </a>
+        <div class="brand" style="margin-bottom:24px">
+          <span class="brand-mark">E</span>
+          <span><b>Example External Wallet</b><small>Wallet credit</small></span>
+        </div>
 
-        <h1 style="font-size:30px;margin:0 0 22px">Add Wallet Credit</h1>
+        <h1 style="font-size:30px;margin:0 0 8px">Add Wallet Credit</h1>
+        <p class="hint" style="margin:0 0 22px">Choose an amount in USD.</p>
 
         <form id="walletCreditForm" onsubmit="openWalletCheckout(event)">
-          <div class="field">
-            <label for="amount">Amount (USD)</label>
+          <label>Select amount</label>
+
+          <div class="amount-grid" id="amountGrid">
+            <button class="amount-option" type="button" data-amount="10">$10</button>
+            <button class="amount-option active" type="button" data-amount="25">$25</button>
+            <button class="amount-option" type="button" data-amount="30">$30</button>
+            <button class="amount-option" type="button" data-amount="50">$50</button>
+            <button class="amount-option" type="button" data-amount="75">$75</button>
+            <button class="amount-option" type="button" data-amount="100">$100</button>
+            <button class="amount-option" type="button" data-amount="150">$150</button>
+            <button class="amount-option" type="button" data-amount="300">$300</button>
+            <button class="amount-option" type="button" data-amount="500">$500</button>
+            <button class="amount-option" type="button" id="otherAmountButton">Other</button>
+          </div>
+
+          <div class="field" id="customAmountWrap">
+            <label for="customAmount">Other amount (USD)</label>
             <input
-              id="amount"
-              name="amount"
+              id="customAmount"
               type="number"
               min="1"
               step="0.01"
-              value="25.00"
               inputmode="decimal"
-              required
-              autofocus
+              placeholder="Enter amount"
             >
           </div>
 
+          <input type="hidden" id="amount" name="amount" value="25.00">
           <input type="hidden" id="purchaseType" value="service_credits">
-          <input type="hidden" id="siteId" value="site_logoforge">
-          <input type="hidden" id="siteName" value="LogoForge AI">
+          <input type="hidden" id="siteId" value="site_example_external_wallet">
+          <input type="hidden" id="siteName" value="Example External Wallet">
           <input type="hidden" id="customerId" value="wallet_customer_demo">
           <input type="hidden" id="orderId" value="">
           <input type="hidden" id="currency" value="USD">
           <input type="hidden" id="product" value="Wallet credit">
 
-          <button class="btn btn-primary" type="submit" style="width:100%;margin-top:16px">
+          <button class="btn btn-primary" type="submit" style="width:100%;margin-top:18px">
             Continue to payment
           </button>
         </form>
@@ -56,6 +111,46 @@
   <script src="config.js"></script>
   <script src="app.js"></script>
   <script>
+    const amountInput = document.getElementById("amount");
+    const customAmount = document.getElementById("customAmount");
+    const customAmountWrap = document.getElementById("customAmountWrap");
+    const amountButtons = document.querySelectorAll(".amount-option");
+    const otherAmountButton = document.getElementById("otherAmountButton");
+
+    function selectPresetAmount(button) {
+      amountButtons.forEach(item => item.classList.remove("active"));
+      button.classList.add("active");
+
+      customAmountWrap.classList.remove("open");
+      customAmount.required = false;
+      customAmount.value = "";
+      amountInput.value = Number(button.dataset.amount).toFixed(2);
+    }
+
+    amountButtons.forEach(button => {
+      if (button === otherAmountButton) return;
+
+      button.addEventListener("click", () => {
+        selectPresetAmount(button);
+      });
+    });
+
+    otherAmountButton.addEventListener("click", () => {
+      amountButtons.forEach(item => item.classList.remove("active"));
+      otherAmountButton.classList.add("active");
+      customAmountWrap.classList.add("open");
+      customAmount.required = true;
+      amountInput.value = "";
+      customAmount.focus();
+    });
+
+    customAmount.addEventListener("input", () => {
+      const value = Number(customAmount.value);
+      amountInput.value = Number.isFinite(value) && value > 0
+        ? value.toFixed(2)
+        : "";
+    });
+
     function createWalletOrderId() {
       return "wallet_credit_" + Date.now();
     }
@@ -63,10 +158,13 @@
     function openWalletCheckout(event) {
       event.preventDefault();
 
-      const amount = Number(document.getElementById("amount").value);
+      const amount = Number(amountInput.value);
 
       if (!Number.isFinite(amount) || amount < 1) {
         toast("Enter an amount of at least USD 1.00.");
+        if (otherAmountButton.classList.contains("active")) {
+          customAmount.focus();
+        }
         return;
       }
 
